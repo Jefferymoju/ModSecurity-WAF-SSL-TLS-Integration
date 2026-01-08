@@ -19,3 +19,23 @@ I began by building the target environment from the ground up on an Ubuntu serve
 > ![Dvwa homepage diagram prove of installation](images/csr_tested_rules.png)
 
 ---
+## 🧪 Phase 2: Vulnerability Validation (The "Before" State)
+With the server live but unprotected, I conducted manual penetration tests over **HTTP** to prove the application was vulnerable to common exploits.
+
+### **Attack Scenarios:**
+* **SQL Injection (SQLi):** Successfully bypassed login logic using `1' OR 1=1 #`.
+* **Cross-Site Scripting (XSS):** Injected `<script>alert('Hacked by Ofeoritse')</script>`, triggering unauthorized JavaScript execution.
+* **Command Injection:** Executed `127.0.0.1; whoami` to prove OS-level command access.
+
+**Observation:** All attacks were successful. The WAF logged these events but did not intervene, simulating an exposed production environment.
+
+**Successful SQL injection**
+> ![SQL injection success](images/sql_injection_success.png)
+> 
+**Successful cross site scripting**
+> ![Xss success](images/xss_success.png)
+> 
+**Successful command injection**
+> ![Command injection success](images/command_injection_success.png)
+
+
